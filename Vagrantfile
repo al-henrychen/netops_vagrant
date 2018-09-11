@@ -152,7 +152,7 @@ Vagrant.configure("2") do |config|
       v.memory = 1024
     end
     #   see note here: https://github.com/pradels/vagrant-libvirt#synced-folders
-    device.vm.synced_folder "/Users/henrychen/ops/dev/netops/ansible", "/ansible", disabled: false, create: true
+    device.vm.synced_folder "/Users/henrychen/ops/dev/netops/ansible", "/ansible", create: true
 
 
     # NETWORK INTERFACES
