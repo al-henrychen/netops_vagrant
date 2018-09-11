@@ -1,15 +1,31 @@
-auto lo
-iface lo inet loopback
-  address 10.0.0.253/32
-  address 172.16.1.1/32
-
-
 auto eth0
 iface eth0
     address 192.168.0.253/24
-    
+    vrf mgmt
+
 auto swp1
 iface swp1
+    address 169.254.34.97/30
 
 auto swp2
 iface swp2
+    address 169.254.238.185/30
+
+auto swp48
+iface swp48 inet dhcp
+
+auto bridge
+iface bridge
+    bridge-vids 10
+    bridge-vlan-aware yes
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    vrf-table auto
+
+auto vlan10
+iface vlan10
+    address 10.128.22.1/22
+    vlan-id 10
+    vlan-raw-device bridge
