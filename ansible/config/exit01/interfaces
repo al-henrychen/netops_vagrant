@@ -8,8 +8,8 @@
  iface eth0 inet dhcp
     vrf mgmt
 
-auto vrf1
-iface vrf1
+auto blue
+iface blue
    vrf-table auto
 
 
@@ -21,20 +21,20 @@ iface mgmt
 auto bridge
 iface bridge
   bridge-vlan-aware yes
-  bridge-ports vxlan4001
+  bridge-ports vni104001
 
 
 auto vlan4001
 iface vlan4001
   vlan-id 4001
   vlan-raw-device bridge
-  vrf vrf1
+  vrf blue
 
 
 
 auto swp44
 iface swp44
-   vrf vrf1
+   vrf blue
 
 auto swp51
 iface swp51
@@ -42,8 +42,8 @@ iface swp51
 auto swp52
 iface swp52
 
-auto vxlan4001
-iface vxlan4001
+auto vni104001
+iface vni104001
    vxlan-id 104001
    vxlan-local-tunnelip 10.0.0.41
    bridge-learning off

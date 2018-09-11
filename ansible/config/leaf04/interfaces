@@ -95,12 +95,12 @@ iface bridge
   bridge-vlan-aware yes
   # bridge-ports includes all ports related to VxLAN and CLAG.
   # does not include the Peerlink.4094 subinterface
-  bridge-ports bond03 bond04 peerlink vni13 vni24 vxlan4001
+  bridge-ports bond03 bond04 peerlink vni100013 vni100024 vni104001
   bridge-vids 13 24
   bridge-pvid 1
 
-auto vxlan4001
-iface vxlan4001
+auto vni104001
+iface vni104001
     vxlan-id 104001
     vxlan-local-tunnelip 10.0.0.14
     bridge-learning off
@@ -108,10 +108,10 @@ iface vxlan4001
 
 
 # VxLAN Tunnel for Server1-Server3 (Vlan 13)
-auto vni13
-iface vni13
+auto vni100013
+iface vni100013
   mtu 9000
-  vxlan-id 13
+  vxlan-id 100013
   vxlan-local-tunnelip 10.0.0.14
   bridge-access 13
   bridge-learning off
@@ -119,10 +119,10 @@ iface vni13
   mstpctl-portbpdufilter yes
 
 #VxLAN Tunnel for Server2-Server4 (Vlan 24)
-auto vni24
-iface vni24
+auto vni100024
+iface vni100024
   mtu 9000
-  vxlan-id 24
+  vxlan-id 100024
   vxlan-local-tunnelip 10.0.0.14
   bridge-access 24
   bridge-learning off
@@ -132,8 +132,8 @@ iface vni24
 
 #Tenants (VRFs)
 
-auto vrf1
-iface vrf1
+auto blue
+iface blue
     vrf-table auto
 
 
@@ -147,7 +147,7 @@ iface vlan13
     address-virtual 44:39:39:ff:00:13 10.1.3.1/24
     vlan-id 13
     vlan-raw-device bridge
-    vrf vrf1
+    vrf blue
 
 auto vlan24
 iface vlan24
@@ -155,12 +155,12 @@ iface vlan24
     address-virtual 44:39:39:ff:00:24 10.2.4.1/24
     vlan-id 24
     vlan-raw-device bridge
-    vrf vrf1
+    vrf blue
 
 auto vlan4001
 iface vlan4001
     hwaddress 44:39:39:FF:40:95
     vlan-id 4001
     vlan-raw-device bridge
-    vrf vrf1
+    vrf blue
 
