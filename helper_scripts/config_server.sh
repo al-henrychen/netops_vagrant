@@ -74,6 +74,8 @@ EOT
 sudo systemctl enable ntp.service
 sudo systemctl start ntp.service
 
+sudo apt-get install traceroute inetutils-traceroute
+
 echo "#################################"
 echo "   Finished"
 echo "#################################"
